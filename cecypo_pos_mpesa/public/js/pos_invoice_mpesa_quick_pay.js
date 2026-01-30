@@ -240,7 +240,8 @@ function render_pos_mpesa_list(dialog) {
 
     // Search handler with debounce
     let search_timeout;
-    wrapper.find('#mpesa-search').on('input', function() {
+    const $search = wrapper.find('#mpesa-search');
+    $search.on('input', function() {
         const search = $(this).val().trim();
         clearTimeout(search_timeout);
 
@@ -251,6 +252,16 @@ function render_pos_mpesa_list(dialog) {
             }, 300);
         }
     });
+
+    // Auto-focus search field
+    if ($search.length) {
+        $search.focus();
+        // Set cursor to end of text if there's a search term
+        if (dialog.search_term) {
+            const val = $search.val();
+            $search.val('').val(val);
+        }
+    }
 
     // Select all handler
     wrapper.find('#mpesa-select-all').on('change', function() {
@@ -480,7 +491,7 @@ function process_pos_mpesa_payments(frm, dialog, outstanding) {
     });
 }
 
-function show_pos_request_payment_dialog(frm, parent_dialog) {
+function show_pos_request_payment_dialog(frm) {
     const outstanding = flt(frm.doc.outstanding_amount || 0);
 
     // Get customer phone from contact

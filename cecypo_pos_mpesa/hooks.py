@@ -4,18 +4,24 @@ app_publisher = "Cecypo.Tech"
 app_description = "POS Mpesa Quick Pay integration for ERPNext"
 app_email = "support@cecypo.tech"
 app_license = "agpl-3.0"
-required_apps = ["frappe_mpsa_payments"]
+required_apps = ["navariltd/frappe_mpsa_payments"]
 
 # Includes in <head>
 # ------------------
 
 # include js in page
-page_js = {"point-of-sale": "public/js/point_of_sale_mpesa.js"}
+page_js = {
+    "point-of-sale": "public/js/point_of_sale_mpesa.js"
+}
 
 # include js in doctype views
 doctype_js = {
     "POS Invoice": "public/js/pos_invoice_mpesa_quick_pay.js",
 }
+
+# Fixtures
+# --------
+fixtures = ["Custom Field"]
 
 # Document Events
 # ---------------

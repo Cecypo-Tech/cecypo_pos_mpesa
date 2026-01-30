@@ -249,7 +249,8 @@
 
         // Bind events
         let search_timeout;
-        wrapper.find('#mpesa-search').on('input', function() {
+        const $search = wrapper.find('#mpesa-search');
+        $search.on('input', function() {
             const search = $(this).val().trim();
             clearTimeout(search_timeout);
             if (search.length >= 3 || search.length === 0) {
@@ -259,6 +260,16 @@
                 }, 300);
             }
         });
+
+        // Auto-focus search field
+        if ($search.length) {
+            $search.focus();
+            // Set cursor to end of text if there's a search term
+            if (dialog.search_term) {
+                const val = $search.val();
+                $search.val('').val(val);
+            }
+        }
 
         wrapper.find('#mpesa-select-all').on('change', function() {
             wrapper.find('.mpesa-item-check').prop('checked', $(this).is(':checked')).trigger('change');
