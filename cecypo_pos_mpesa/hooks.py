@@ -21,7 +21,14 @@ doctype_js = {
 
 # Fixtures
 # --------
-fixtures = ["Custom Field"]
+# fixtures = [
+#     {
+#         "dt": "Custom Field",
+#         "filters": [
+#             ["dt", "in", ["POS Invoice", "POS Profile"]]
+#         ]
+#     }
+# ]
 
 # Document Events
 # ---------------
